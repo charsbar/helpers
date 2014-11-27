@@ -41,10 +41,10 @@ function perlbrew_build {
   [[ "${perl_version}-" =~ '-extra-' ]] && brewopts="$brewopts -Duseshrplib -Duseithreads"
 
   printf "Building Perl ${perl_version} ..."
-  run-with-progress perlbrew install --as "$perl_version" $brewopts "$brewver"
+  run-with-progress perlbrew install --as "$TRAVIS_PERL_VERSION" $brewopts "$brewver"
 
-  if ! perlbrew_check "$perl_version"; then
-    echo "Perl $perl_version was not installed - compilation failed...?" 1>&2
+  if ! perlbrew_check "$TRAVIS_PERL_VERSION"; then
+    echo "Perl $TRAVIS_PERL_VERSION was not installed - compilation failed...?" 1>&2
     return 1
   fi
 }
